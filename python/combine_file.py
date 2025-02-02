@@ -12,9 +12,12 @@ line_count = 0
 
 with open(args.output,'w') as f:
     for i in range(args.num):
-        with open(args.input + '_' + str(i) + args.suffix, 'r') as t:
-            for line in t:
-                f.write(line)
-                line_count +=1
+        try:
+            with open(args.input + '_' + str(i) + args.suffix, 'r') as t:
+                for line in t:
+                    f.write(line)
+                    line_count +=1
+        except:
+            print('file' + args.input + '_' + str(i) + args.suffix+' fails when reading and is not merged')
 
 print('total lines: ' + str(line_count))
